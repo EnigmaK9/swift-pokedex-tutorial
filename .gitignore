@@ -1,0 +1,29 @@
+# Xcode
+*.xcuserstate
+*.xcworkspace
+xcuserdata/
+DerivedData/
+*.xcresult
+
+# Build artifacts
+build/
+*.o
+*.dylib
+
+# LaTeX aux files
+*.aux
+*.log
+*.out
+*.toc
+
+# macOS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+
+# Python cache
+__pycache__/
+*.pyc
