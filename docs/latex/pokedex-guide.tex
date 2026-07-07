@@ -436,37 +436,40 @@ open PokedexTutorial.xcodeproj
 \section{Project Structure Reference}
 
 \begin{center}
-\begin{tikzpicture}[
-    level 1/.style={sibling distance=48mm},
-    level 2/.style={sibling distance=20mm},
-    every node/.style={font=\footnotesize, align=center}
-]
-\node {\textbf{PokedexTutorial}}
-    child { node {App\\\tiny entry point}
-        child { node {PokedexTutorial\\App.swift} }
-    }
-    child { node {Models\\\tiny data types}
-        child { node {Pokemon.swift} }
-        child { node {PokemonType.swift} }
-        child { node {PokemonDetail.swift} }
-        child { node {LoadingState.swift} }
-    }
-    child { node {Services\\\tiny networking}
-        child { node {Service\\Protocol.swift} }
-        child { node {API\\Service.swift} }
-        child { node {Mock\\Service.swift} }
-    }
-    child { node {ViewModels\\\tiny logic}
-        child { node {List\\ViewModel.swift} }
-        child { node {Detail\\ViewModel.swift} }
-    }
-    child { node {Views\\\tiny UI}
-        child { node {List\\View.swift} }
-        child { node {Detail\\View.swift} }
-        child { node {Row\\View.swift} }
-        child { node {Type\\BadgeView.swift} }
-    };
-\end{tikzpicture}
+\begin{tabular}{ll}
+\toprule
+\textbf{Directory} & \textbf{Files} \\
+\midrule
+\texttt{App/} & \texttt{PokedexTutorialApp.swift} — @main entry point \\
+\texttt{Models/} & \texttt{Pokemon.swift} — core entity, custom JSON decoder \\
+                  & \texttt{PokemonType.swift} — 18-type enum with colors \\
+                  & \texttt{PokemonDetail.swift} — stats, abilities, sprites \\
+                  & \texttt{LoadingState.swift} — generic async state enum \\
+\texttt{Services/} & \texttt{PokemonServiceProtocol.swift} — API contract \\
+                  & \texttt{PokemonAPIService.swift} — real Pok\'{e}API client \\
+                  & \texttt{MockPokemonService.swift} — local fixture data \\
+\texttt{ViewModels/} & \texttt{PokemonListViewModel.swift} — search, filter, pagination \\
+                  & \texttt{PokemonDetailViewModel.swift} — detail \& type relations \\
+\texttt{Views/} & \texttt{PokemonListView.swift} — main screen (List/Grid) \\
+                  & \texttt{PokemonDetailView.swift} — detail with FlowLayout \\
+                  & \texttt{PokemonRowView.swift} — reusable row component \\
+                  & \texttt{TypeBadgeView.swift} — colored type capsule \\
+                  & \texttt{StatBarView.swift} — color-coded stat bar \\
+                  & \texttt{FilterChipView.swift} — selectable type chip \\
+\texttt{Stores/} & \texttt{FavoritesStore.swift} — UserDefaults persistence \\
+\texttt{Extensions/} & \texttt{Color+PokemonType.swift}, \texttt{View+Extensions.swift} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\fbox{
+\begin{minipage}{0.85\textwidth}
+\small
+\textbf{Tests:} \texttt{PokedexTutorialTests/} (24 tests: model, ViewModel, API)\\
+\textbf{Resources:} \texttt{Assets.xcassets/} (app icon), \texttt{mock\_pokemon\_list.json} (sample data)
+\end{minipage}
+}
 \end{center}
 
 % ═══════════════════════════════════════════════════════════════════════════

@@ -62,19 +62,19 @@ sequenceDiagram
 ```mermaid
 flowchart TD
     A[View appears] --> B{State?}
-    B -->|.idle| C[Call fetchInitialData()]
-    B -->|.loading| D[Show ProgressView spinner]
-    B -->|.loaded| E[Show list]
-    B -->|.error| F[Show ErrorView with retry]
+    B -->|".idle"| C[Call fetchInitialData()]
+    B -->|".loading"| D[Show ProgressView spinner]
+    B -->|".loaded"| E[Show list]
+    B -->|".error"| F[Show ErrorView with retry]
 
-    C --> G[state = .loading]
+    C --> G["state = .loading"]
     G --> H[await service.fetchPokemonList]
     H --> I{Success?}
     I -->|Yes| J[allPokemon = results]
-    J --> K[state = .loaded results]
+    J --> K["state = .loaded results"]
     I -->|No| L{Already have data?}
     L -->|Yes| M[Keep loaded data, log error]
-    L -->|No| N[state = .error message]
+    L -->|No| N["state = .error message"]
 
     K --> E
     N --> F
@@ -91,7 +91,7 @@ flowchart TD
 ```mermaid
 flowchart LR
     subgraph "User Input"
-        A[User types in .searchable field]
+        A["User types in .searchable field"]
     end
 
     subgraph "Combine Pipeline (300ms debounce)"
@@ -195,23 +195,23 @@ sequenceDiagram
 ```mermaid
 flowchart TD
     A[Detail view appears] --> B{state?}
-    B -->|.idle| C[fetchDetail()]
-    B -->|.loading| D[Show spinner]
-    B -->|.loaded| E[Render full detail]
-    B -->|.error| F[Show ErrorView]
+    B -->|".idle"| C[fetchDetail()]
+    B -->|".loading"| D[Show spinner]
+    B -->|".loaded"| E[Render full detail]
+    B -->|".error"| F[Show ErrorView]
 
     C --> G["state = .loading"]
     G --> H["await service.fetchPokemonDetail(id:)"]
     H --> I{Success?}
-    I -->|Yes| J[state = .loaded detail]
-    I -->|No| K[state = .error message]
+    I -->|Yes| J["state = .loaded detail"]
+    I -->|No| K["state = .error message"]
 
     J --> E
     K --> F
 
     E --> L{User expands<br/>Type Effectiveness?}
     L -->|Yes| M[fetchTypeRelations()]
-    M --> N[typeRelationsState = .loading]
+    M --> N["typeRelationsState = .loading"]
     N --> O["await service.fetchTypeRelations(name:)"]
     O --> P{Success?}
     P -->|Yes| Q[Show weakness/resistance/immunity]
@@ -297,10 +297,10 @@ flowchart TD
     L --> M{Success?}
     M -->|Yes| N["allPokemon.append(contentsOf: newResults)"]
     N --> O["currentOffset = offset<br/>hasMorePages = (response.next != nil)"]
-    O --> P[state = .loaded allPokemon]
+    O --> P["state = .loaded allPokemon"]
     M -->|No| Q{Already have data?}
     Q -->|Yes| R[Keep data, log error]
-    Q -->|No| S[state = .error]
+    Q -->|No| S["state = .error"]
 
     P --> T[View appends new rows]
     R --> T
@@ -395,7 +395,7 @@ flowchart TD
     N --> O[User taps 'Try Again']
     O --> P[Re-fetch from scratch]
     P --> Q{Success?}
-    Q -->|Yes| R[state = .loaded]
+    Q -->|Yes| R["state = .loaded"]
     Q -->|No| M
 ```
 
